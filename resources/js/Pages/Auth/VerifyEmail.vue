@@ -43,7 +43,7 @@ export default {
                                         </div>
                                     </div>
 
-                                    <div v-if="verificationLinkSent" class="mb-4 alert alert-success text-sm text-success">
+                                    <div v-if="verificationLinkSent" class="mb-4 fs-11 alert alert-success text-sm text-success">
                                         A new verification link has been sent to the email address you provided in your profile settings.
                                     </div>
 
