@@ -26,7 +26,7 @@
                                 <div class="p-2 mt-3">
                                     <form class="customform" @submit.prevent="submit">
 
-                                        <div class="mb-3">
+                                        <div class="mb-2">
                                             <InputLabel for="email" value="Email" />
                                             <TextInput id="email" v-model="form.email" type="email" class="form-control" autofocus placeholder="Please enter email" autocomplete="email" required :class="{ 'is-invalid': form.errors.email }" />
                                             <InputError :message="form.errors.email" />
