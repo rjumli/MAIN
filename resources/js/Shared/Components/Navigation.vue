@@ -2,7 +2,7 @@
 import { router } from '@inertiajs/vue3';
 import { layoutMethods } from "@/Shared/State/helpers";
 const logout = () => {
-  router.post(route('logout'));
+  router.post('/logout');
 };
 </script>
 
@@ -710,7 +710,7 @@ export default {
               <BTab title="Alerts" class="p-4">
                 <simplebar data-simplebar style="max-height: 300px" class="pe-2">
                   <div class="w-25 w-sm-50 pt-3 mx-auto">
-                    <img src="@assets/images/svg/bell.svg" class="img-fluid" alt="user-pic" />
+                    <!-- <img src="@assets/images/svg/bell.svg" class="img-fluid" alt="user-pic" /> -->
                   </div>
                   <div class="text-center pb-5 mt-2">
                     <h6 class="fs-18 fw-semibold lh-base">
@@ -725,18 +725,18 @@ export default {
           <BDropdown variant="link" class="ms-sm-3 header-item topbar-user" toggle-class="rounded-circle arrow-none" menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -14, crossAxis: 0, mainAxis: 0 }">
             <template #button-content>
               <span class="d-flex align-items-center">
-                <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle header-profile-user" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
+                <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle header-profile-user" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.user.data.name">
                 <span class="text-start ms-xl-2">
-                  <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $page.props.auth.user.name }}</span>
-                  <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Administrator</span>
+                  <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $page.props.user.data.name }}</span>
+                  <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{{ $page.props.auth.user.role }}</span>
                 </span>
               </span>
             </template>
             <h6 class="dropdown-header">Welcome {{ $page.props.auth.user.name }}!</h6>
-            <Link class="dropdown-item" :href="route('profile.show')"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
+            <Link class="dropdown-item" href="/user/profile"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
             <span class="align-middle">Profile</span>
             </Link>
-            <Link class="dropdown-item" v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')"><i class="mdi mdi-key-variant text-muted fs-16 align-middle me-1"></i>
+            <Link class="dropdown-item" v-if="$page.props.jetstream.hasApiFeatures" href="/user/api-tokens"><i class="mdi mdi-key-variant text-muted fs-16 align-middle me-1"></i>
             <span class="align-middle"> API Tokens</span>
             </Link>
             <div class="dropdown-divider"></div>
@@ -744,21 +744,7 @@ export default {
             <i class=" mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i>
             <span class="align-middle"> Messages</span>
             </Link>
-            <Link class="dropdown-item" href="#">
-            <i class="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i>
-            <span class="align-middle"> Taskboard</span>
-            </Link>
-            <Link class="dropdown-item" href="#"><i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i>
-            <span class="align-middle"> Help</span>
-            </Link>
             <div class="dropdown-divider"></div>
-            <Link class="dropdown-item" href="#"><i class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>
-            <span class="align-middle"> Balance : <b>$5971.67</b></span>
-            </Link>
-            <Link class="dropdown-item" href="#">
-            <BBadge variant="success-subtle" class="bg-success-subtle text-success mt-1 float-end">New</BBadge><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>
-            <span class="align-middle"> Settings</span>
-            </Link>
             <Link class="dropdown-item" href="/user/confirm-password"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i>
             <span class="align-middle"> Lock screen</span>
             </Link>

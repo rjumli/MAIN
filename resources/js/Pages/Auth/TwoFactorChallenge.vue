@@ -1,9 +1,9 @@
 <script setup>
 import { nextTick, ref } from 'vue';
 import { Link, Head, useForm } from '@inertiajs/vue3';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+// import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const recovery = ref(false);
 
@@ -30,7 +30,7 @@ const toggleRecovery = async () => {
 };
 
 const submit = () => {
-    form.post(route('two-factor.login'));
+    form.post('/two-factor-challenge');
 };
 </script>
 

@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { Link, router, useForm } from '@inertiajs/vue3';
-import FormSection from '@/Components/FormSection.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
+import FormSection from '@/Shared/Components/Subcomponents/FormSection.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const props = defineProps({
     user: Object,
@@ -26,7 +26,7 @@ const updateProfileInformation = () => {
         form.photo = photoInput.value.files[0];
     }
 
-    form.post(route('user-profile-information.update'), {
+    form.post('/user/profile-information', {
         errorBag: 'updateProfileInformation',
         preserveScroll: true,
         onSuccess: () => clearPhotoFileInput(),
@@ -56,7 +56,7 @@ const updatePhotoPreview = () => {
 };
 
 const deletePhoto = () => {
-    router.delete(route('current-user-photo.destroy'), {
+    router.delete('/user/profile-photo', {
         preserveScroll: true,
         onSuccess: () => {
             photoPreview.value = null;
@@ -121,7 +121,7 @@ const clearPhotoFileInput = () => {
                     <p class="text-sm mt-2 text-muted">
                         Your email address is unverified.
 
-                        <Link :href="route('verification.send')" method="post" as="button" class="btn btn-sm btn-warning" @click.prevent="sendEmailVerification">
+                        <Link href="/email/verification-notification" method="post" as="button" class="btn btn-sm btn-warning" @click.prevent="sendEmailVerification">
                         Click here to re-send the verification email.
                         </Link>
                     </p>

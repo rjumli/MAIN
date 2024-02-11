@@ -3,11 +3,11 @@
         <BContainer fluid>
             <BRow>
                 <BCol col sm="6">
-                    {{ new Date().getFullYear() }} © Velzon.
+                    2023 © DOST-IX
                 </BCol>
                 <BCol col sm="6">
                     <div class="text-sm-end d-none d-sm-block">
-                        Design & Develop by Themesbrand
+                        Developed by Krad
                     </div>
                 </BCol>
             </BRow>

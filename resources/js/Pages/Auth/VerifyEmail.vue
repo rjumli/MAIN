@@ -6,7 +6,7 @@ const props = defineProps({
 });
 const form = useForm({});
 const submit = () => {
-    form.post(route('verification.send'));
+    form.post('/email/verification-notification');
 };
 const verificationLinkSent = computed(() => props.status === 'verification-link-sent');
 </script>
@@ -54,7 +54,7 @@ export default {
 
                                         <div class="mt-5 text-center">
                                             <p class="mb-0">Didn't receive a code ?
-                                                <Link :href="route('login')" class="fw-semibold text-primary text-decoration-underline">Resend</Link> | <Link :href="route('logout')" method="post" class="fw-semibold text-danger text-decoration-underline">Logout</Link>
+                                                <Link href="/login" class="fw-semibold text-primary text-decoration-underline">Resend</Link> | <Link href="/logout" method="post" class="fw-semibold text-danger text-decoration-underline">Logout</Link>
                                             </p>
                                         </div>
                                     </form>

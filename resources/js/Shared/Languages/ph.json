@@ -1,4 +1,26 @@
 {
+    "krad-menu": "Menu",
+    "krad-dashboards": "Dashboards",
+
+    "krad-lists": "Listahan",
+    "krad-directory": "Diksyunaryo",
+    "krad-schools": "Mga Paaralan",
+    "krad-course": "Mga Kurso",
+    "krad-certifications": "Mga Sertipikasyon",
+    "krad-configuration": "Mga Pagsasaayos",
+
+    "krad-location": "Lokasyon",
+    "krad-region": "Rehiyon",
+    "krad-province": "Lalawigan",
+    "krad-municipality": "Munisipalidad",
+    "krad-barangay": "Barangay",
+
+    "krad-utility": "Utility",
+    "krad-logs": "Logs",
+    "krad-activity": "Mga Tala ng Aktibidad",
+    "krad-authentication": "Mga Log ng Authentication",
+    "krad-backup": "Backup and Restore",
+
     "t-menu": "Menu",
     "t-dashboards": "Dashboards",
     "t-analytics": "Analytics",

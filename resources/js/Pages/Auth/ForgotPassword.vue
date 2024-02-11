@@ -31,7 +31,7 @@
 
                                         <div class="mt-4 text-center">
                                             <p class="mb-0 fs-12">Wait, I remember my password...
-                                                <Link :href="route('login')" class="fw-semibold text-primary text-decoration-underline"> Click here</Link>
+                                                <Link href="/login" class="fw-semibold text-primary text-decoration-underline"> Click here</Link>
                                             </p>
                                         </div>
 
@@ -48,11 +48,11 @@
 </template>
 <script setup>
 import { Link, Head, useForm } from '@inertiajs/vue3';
-import InputError from './Components/InputError.vue';
-import InputLabel from './Components/InputLabel.vue';
-import TextInput from './Components/TextInput.vue';
-import Lottie from "@/Components/widgets/lottie.vue";
-import animationData from "@/Components/widgets/rhvddzym.json";
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
+import Lottie from "@/Shared/Components/Subcomponents/lottie.vue";
+import animationData from "@/Shared/Components/Subcomponents/json/rhvddzym.json";
 defineProps({
     status: String,
 });
@@ -60,7 +60,7 @@ const form = useForm({
     email: '',
 });
 const submit = () => {
-    form.post(route('password.email'));
+    form.post('/forgot-password');
 };
 </script>
 <script>

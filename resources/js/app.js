@@ -5,7 +5,6 @@ import '../scss/mermaid.min.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp, Link, Head } from '@inertiajs/vue3';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import BootstrapVueNext from 'bootstrap-vue-next';
 import VueApexCharts from "vue3-apexcharts";
 
@@ -37,7 +36,6 @@ createInertiaApp({
             .use(plugin)
             .use(store)
             .use(i18n)
-            .use(ZiggyVue)
             .use(BootstrapVueNext)
             .use(VueApexCharts)
             .component("Link", Link)

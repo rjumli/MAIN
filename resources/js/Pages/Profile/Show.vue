@@ -47,17 +47,24 @@ export default {
             </div>
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-body">
-                        <BTabs nav-class="nav-tabs nav-justified rounded" pills>
-                            <BTab class="nav-item" title="Personal Details" active></BTab>
-                            <BTab class="nav-item" title="Update Password"></BTab>
-                            <BTab class="nav-item" title="Two Factor Authentication"></BTab>
-                            <BTab class="nav-item" title="Browser Sessions"></BTab>
+                    <div class="card-body" style="height: calc(100vh - 220px); overflow: auto;">
+                        <BTabs nav-class="nav-tabs nav-border-top nav-border-top-primary rounded">
+                            <BTab class="nav-item" title="Personal Information" active>
+                                <UpdateProfileInformationForm :user="$page.props.auth.user" />
+                            </BTab>
+                            <BTab class="nav-item" title="Update Password">
+                                <UpdatePasswordForm />
+                            </BTab>
+                            <BTab class="nav-item" title="Two Factor Authentication">
+                                <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication" />
+                            </BTab>
+                            <BTab class="nav-item" title="Browser Sessions">
+                                <LogoutOtherBrowserSessionsForm :sessions="sessions" />
+                            </BTab>
                         </BTabs>
                     </div>
                 </div>
             </div>
         </div>
-        
     </Layout>
 </template>

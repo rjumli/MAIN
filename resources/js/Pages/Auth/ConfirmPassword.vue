@@ -29,7 +29,7 @@
 
                                         <div class="mt-5 text-center">
                                             <p class="mb-0">Not you ? return
-                                                <Link :href="route('login')" class="fw-semibold text-primary text-decoration-underline"> Signin </Link>
+                                                <Link href="/login" class="fw-semibold text-primary text-decoration-underline"> Signin </Link>
                                             </p>
                                         </div>
                                     </form>
@@ -47,14 +47,14 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
-import InputLabel from './Components/InputLabel.vue';
-import TextInput from './Components/TextInput.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 const form = useForm({
     password: '',
 });
 const passwordInput = ref(null);
 const submit = () => {
-    form.post(route('password.confirm'), {
+    form.post('/user/comfirm-password', {
         onFinish: () => {
             form.reset();
             passwordInput.value.focus();

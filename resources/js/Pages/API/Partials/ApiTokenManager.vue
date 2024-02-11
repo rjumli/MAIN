@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
-import Checkbox from '@/Components/Checkbox.vue';
-import FormSection from '@/Components/FormSection.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
+import Checkbox from '@/Shared/Components/Subcomponents/Checkbox.vue';
+import FormSection from '@/Shared/Components/Subcomponents/FormSection.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const props = defineProps({
     tokens: Array,
@@ -30,7 +30,7 @@ const apiTokenBeingDeleted = ref(null);
 const apiTokenDeleteModal = ref(false);
 
 const createApiToken = () => {
-    createApiTokenForm.post(route('api-tokens.store'), {
+    createApiTokenForm.post('/user/api-tokens', {
         preserveScroll: true,
         onSuccess: () => {
             displayingToken.value = true;
@@ -46,7 +46,7 @@ const manageApiTokenPermissions = (token) => {
 };
 
 const updateApiToken = () => {
-    updateApiTokenForm.put(route('api-tokens.update', managingPermissionsFor.value), {
+    updateApiTokenForm.put('/user/api-tokens/'+managingPermissionsFor.value, {
         preserveScroll: true,
         preserveState: true,
         onSuccess: () => (managingPermissionsFor.value = null, permissionModal.value = false),
@@ -59,7 +59,7 @@ const confirmApiTokenDeletion = (token) => {
 };
 
 const deleteApiToken = () => {
-    deleteApiTokenForm.delete(route('api-tokens.destroy', apiTokenBeingDeleted.value), {
+    deleteApiTokenForm.delete('/user/api-tokens/'+apiTokenBeingDeleted.value, {
         preserveScroll: true,
         preserveState: true,
         onSuccess: () => (apiTokenBeingDeleted.value = null, apiTokenDeleteModal.value = false),

@@ -1,20 +1,22 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import Checkbox from '@/Components/Checkbox.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
+import Checkbox from '@/Shared/Components/Subcomponents/Checkbox.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+    username: 'kradjumli',
+    email: 'kradjumli@gmail.com',
+    password: '123456789',
+    password_confirmation: '123456789',
+    is_active: 0,
+    role: 'Administrator',
     terms: false,
 });
 
 const submit = () => {
-    form.post(route('register'), {
+    form.post('/register', {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
@@ -105,7 +107,7 @@ export default {
                                         <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature" class="mb-3 form-check">
                                             <Checkbox id="terms" v-model:checked="form.terms" name="terms" required class="form-check-input me-1" :class="{ 'is-invalid': form.errors.terms }" />
                                             <label class="form-check-label mb-0 fs-12 text-muted fst-italic" for="auth-remember-check">
-                                                I agree to the <BLink target="_blank" :href="route('terms.show')" class="">Terms of Service</BLink> and <BLink target="_blank" :href="route('policy.show')" class="">Privacy Policy</BLink>
+                                                I agree to the <BLink target="_blank" href="/terms-of-service" class="">Terms of Service</BLink> and <BLink target="_blank"  href="/privacy-policy" class="">Privacy Policy</BLink>
                                             </label>
                                             <InputError :message="form.errors.terms" />
                                         </div>
@@ -134,7 +136,7 @@ export default {
 
                         <div class="mt-4 text-center">
                             <p class="mb-0">Already have an account ?
-                                <Link :href="route('login')" class="fw-semibold text-primary text-decoration-underline"> Signin </Link>
+                                <Link href="/login" class="fw-semibold text-primary text-decoration-underline"> Signin </Link>
                             </p>
                         </div>
                     </BCol>

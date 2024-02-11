@@ -15,7 +15,6 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="shortcut icon" href="{{ URL::asset('image/sei.ico') }}">
     
-    @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead
 </head>

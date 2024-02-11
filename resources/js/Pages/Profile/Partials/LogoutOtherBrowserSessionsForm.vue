@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
-import InputError from '@/Components/InputError.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 defineProps({
     sessions: Array,
@@ -22,7 +22,7 @@ const confirmLogout = () => {
 };
 
 const logoutOtherBrowserSessions = () => {
-    form.delete(route('other-browser-sessions.destroy'), {
+    form.delete('/user/other-browser-sessions', {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onError: () => passwordInput.value.focus(),

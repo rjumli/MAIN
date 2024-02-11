@@ -55,7 +55,7 @@
 
                                         <div class="mt-5 text-center">
                                             <p class="mb-0">Forgot your password? 
-                                                <Link v-if="canResetPassword" :href="route('password.request')" class="fw-semibold text-primary text-decoration-underline"> Click here</Link>
+                                                <Link v-if="canResetPassword" href="/forgot-password" class="fw-semibold text-primary text-decoration-underline"> Click here</Link>
                                             </p>
                                         </div>
 
@@ -73,10 +73,10 @@
 </template>
 <script setup>
 import { useForm } from '@inertiajs/vue3';
-import Checkbox from './Components/Checkbox.vue';
-import InputError from './Components/InputError.vue';
-import InputLabel from './Components/InputLabel.vue';
-import TextInput from './Components/TextInput.vue';
+import Checkbox from '@/Shared/Components/Subcomponents/Checkbox.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 defineProps({
     canResetPassword: Boolean,
     status: String,
@@ -90,7 +90,7 @@ const submit = () => {
     form.transform(data => ({
         ...data,
         remember: form.remember ? 'on' : '',
-    })).post(route('login'), {
+    })).post('/login', {
         onFinish: () => form.reset('password'),
     });
 };

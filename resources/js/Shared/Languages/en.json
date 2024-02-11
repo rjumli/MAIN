@@ -1,4 +1,27 @@
 {
+    "krad-menu": "Menu",
+    "krad-dashboards": "Dashboards",
+
+    "krad-lists": "Lists",
+    "krad-directory": "Directory",
+    "krad-schools": "Schools",
+    "krad-course": "Courses",
+    "krad-certifications": "Certifications",
+
+    "krad-location": "Location",
+    "krad-region": "Region",
+    "krad-province": "Province",
+    "krad-municipality": "Municipality",
+    "krad-barangay": "Barangay",
+
+    "krad-configuration": "Configuration",
+    "krad-utility": "Utility",
+    "krad-logs": "Logs",
+    "krad-activity": "Activity Logs",
+    "krad-authentication": "Authentication Logs",
+    "krad-backup": "Backup and Restore",
+
+
     "t-menu": "Menu",
     "t-dashboards": "Dashboards",
     "t-analytics": "Analytics",

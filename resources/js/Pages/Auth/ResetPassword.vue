@@ -1,8 +1,8 @@
 <script setup>
 import { Link, Head, useForm } from '@inertiajs/vue3';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const props = defineProps({
     email: String,
@@ -17,7 +17,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('password.update'), {
+    form.post('/reset-password', {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
@@ -113,7 +113,7 @@ export default {
 
                         <div class="mt-4 text-center">
                             <p class="mb-0">Wait, I remember my password...
-                                <Link :href="route('login')" class="fw-semibold text-primary text-decoration-underline"> Click
+                                <Link href="/login" class="fw-semibold text-primary text-decoration-underline"> Click
                                 here </Link>
                             </p>
                         </div>

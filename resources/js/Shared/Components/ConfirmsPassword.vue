@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive, nextTick } from 'vue';
-import InputError from './InputError.vue';
-import TextInput from './TextInput.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const emit = defineEmits(['confirmed']);
 
@@ -31,7 +31,7 @@ const form = reactive({
 const passwordInput = ref(null);
 
 const startConfirmingPassword = () => {
-    axios.get(route('password.confirmation')).then(response => {
+    axios.get('/user/confirmed-password-status').then(response => {
         if (response.data.confirmed) {
             emit('confirmed');
         } else {
@@ -46,7 +46,7 @@ const startConfirmingPassword = () => {
 const confirmPassword = () => {
     form.processing = true;
 
-    axios.post(route('password.confirm'), {
+    axios.post('/user/confirm-password', {
         password: form.password,
     }).then(() => {
         form.processing = false;
