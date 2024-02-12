@@ -672,3 +672,9 @@ File: Custom Css File
 .customform input {
   margin-bottom: 5px;
 }
+
+.file-manager-sidebar {
+  min-width: 450px;
+  max-width: 450px;
+  height: calc(100vh - 180px);
+}

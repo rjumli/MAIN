@@ -8,21 +8,46 @@
                     <span data-key="t-menu"> {{ $t("krad-menu") }}</span>
                 </li>
                 <li class="nav-item">
-                    <Link class="nav-link menu-link" href="/">
+                    <Link class="nav-link menu-link" href="/" :class="{'active': $page.component.startsWith('Modules/Home') }">
                         <i class="ri ri-apps-line"></i>
-                        <span data-key="t-dashboards"> {{ $t("krad-dashboards") }}</span>
+                        <span data-key="krad-dashboards"> {{ $t("krad-dashboards") }}</span>
                     </Link>
+                </li>
+                <li class="nav-item">
+                    <Link class="nav-link menu-link" href="#scholars" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="ri-team-fill"></i>
+                        <span data-key="krad-scholars">{{$t("krad-scholars")}}</span>
+                    </Link>
+                    <div class="collapse menu-dropdown" id="scholars">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <Link class="nav-link" href="/schools">{{ $t("krad-lists") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" href="/courses">{{ $t("krad-qualifiers") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" href="/certifications">{{ $t("krad-endorsement") }}</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link menu-link" href="/staffs">
+                      <i class="bx bx-user-circle"></i>
+                      <span data-key="krad-staffs"> {{ $t("krad-staffs") }}</span>
+                  </Link>
                 </li>
 
                 <li class="menu-title">
                     <i class="ri-more-fill"></i>
-                    <span data-key="t-pages">{{ $t("krad-lists") }}</span>
+                    <span data-key="krad-lists">{{ $t("krad-lists") }}</span>
                 </li>
 
                 <li class="nav-item">
                     <Link class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
                         <i class="ri-book-mark-fill"></i>
-                        <span data-key="t-authentication">{{$t("krad-directory")}}</span>
+                        <span data-key="krad-directory">{{$t("krad-directory")}}</span>
                     </Link>
                     <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
@@ -42,7 +67,7 @@
                 <li class="nav-item">
                     <Link class="nav-link menu-link" href="#location" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="location">
                         <i class="ri-earth-fill"></i>
-                        <span data-key="t-authentication">{{$t("krad-location")}}</span>
+                        <span data-key="krad-location">{{$t("krad-location")}}</span>
                     </Link>
                     <div class="collapse menu-dropdown" id="location">
                         <ul class="nav nav-sm flex-column">
@@ -64,31 +89,31 @@
 
                 <li class="menu-title">
                     <i class="ri-more-fill"></i>
-                    <span data-key="t-components">{{ $t("krad-configuration") }}</span>
+                    <span data-key="krad-configuration">{{ $t("krad-configuration") }}</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarMultilevel" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarMultilevel">
+                    <a class="nav-link menu-link" href="#utility" :class="{'active': $page.component.startsWith('Modules/Utility') }"
+                        data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
                         <i class="ri-settings-4-fill"></i>
-                        <span data-key="t-multi-level">{{ $t("krad-utility") }}</span>
+                        <span data-key="krad-utility">{{ $t("krad-utility") }}</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                    <div class="collapse menu-dropdown" id="utility">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <Link class="nav-link" href="/backup-restore">{{ $t("krad-backup") }}</Link>
+                                <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Backups') }" href="/utility/backups">{{ $t("krad-backup") }}</Link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#sidebarAccount" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                                aria-controls="sidebarAccount" data-key="t-level-1.2">
+                                <a class="nav-link" href="#logs" :class="{'active': $page.component.startsWith('Modules/Utility/Logs') }"
+                                data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2">
                                 {{ $t("krad-logs") }}
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarAccount">
+                                <div class="collapse menu-dropdown" id="logs">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
-                                            <Link class="nav-link" href="/logs/activity">{{ $t("krad-activity") }}</Link>
+                                            <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Logs/Activities') }" href="/utility/logs/activities">{{ $t("krad-activity") }}</Link>
                                         </li>
                                         <li class="nav-item">
-                                          <Link class="nav-link" href="/logs/authentication">{{ $t("krad-authentication") }}</Link>
+                                          <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Logs/Authentications') }" href="/utility/logs/authentications">{{ $t("krad-authentication") }}</Link>
                                         </li>
                                     </ul>
                                 </div>
