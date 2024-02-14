@@ -65,23 +65,31 @@
                 </li>
 
                 <li class="nav-item">
-                    <Link class="nav-link menu-link" href="#location" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="location">
+                    <Link class="nav-link menu-link" :class="{'active': $page.component.startsWith('Modules/Lists/Dropdowns') }" href="/lists/dropdowns">
+                        <i class="ri-list-check"></i>
+                        <span data-key="krad-dropdown">{{$t("krad-dropdown")}}</span>
+                    </Link>
+                </li>
+
+                <li class="nav-item">
+                    <Link class="nav-link menu-link" href="#location" :class="{'active': $page.component.startsWith('Modules/Lists/Locations') }"
+                    data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="location">
                         <i class="ri-earth-fill"></i>
                         <span data-key="krad-location">{{$t("krad-location")}}</span>
                     </Link>
                     <div class="collapse menu-dropdown" id="location">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <Link class="nav-link" href="/regions">{{ $t("krad-region") }}</Link>
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/regions' }" href="/lists/locations/regions">{{ $t("krad-region") }}</Link>
                             </li>
                             <li class="nav-item">
-                                <Link class="nav-link" href="/provinces">{{ $t("krad-province") }}</Link>
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/provinces' }" href="/lists/locations/provinces">{{ $t("krad-province") }}</Link>
                             </li>
                             <li class="nav-item">
-                                <Link class="nav-link" href="/municipalities">{{ $t("krad-municipality") }}</Link>
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/municipalities' }" href="/lists/locations/municipalities">{{ $t("krad-municipality") }}</Link>
                             </li>
                             <li class="nav-item">
-                                <Link class="nav-link" href="/barangays">{{ $t("krad-barangay") }}</Link>
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/barangays' }" href="/lists/locations/barangays">{{ $t("krad-barangay") }}</Link>
                             </li>
                         </ul>
                     </div>
@@ -99,6 +107,9 @@
                     </a>
                     <div class="collapse menu-dropdown" id="utility">
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                              <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Users') }" href="/utility/users">{{ $t("krad-users") }}</Link>
+                            </li>
                             <li class="nav-item">
                                 <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Backups') }" href="/utility/backups">{{ $t("krad-backup") }}</Link>
                             </li>

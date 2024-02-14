@@ -13,6 +13,8 @@
     "krad-certifications": "Mga Sertipikasyon",
     "krad-configuration": "Mga Pagsasaayos",
 
+    "krad-dropdown": "Dropdowns",
+
     "krad-location": "Lokasyon",
     "krad-region": "Rehiyon",
     "krad-province": "Lalawigan",
@@ -20,6 +22,7 @@
     "krad-barangay": "Barangay",
 
     "krad-utility": "Utility",
+    "krad-users": "Pamamahala ng Gumagamit",
     "krad-logs": "Logs",
     "krad-activity": "Mga Tala ng Aktibidad",
     "krad-authentication": "Mga Log ng Authentication",

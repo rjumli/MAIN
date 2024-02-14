@@ -54,7 +54,7 @@ const form = useForm({
 });
 const passwordInput = ref(null);
 const submit = () => {
-    form.post('/user/comfirm-password', {
+    form.post('/user/confirm-password', {
         onFinish: () => {
             form.reset();
             passwordInput.value.focus();

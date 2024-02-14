@@ -3,7 +3,7 @@ import { nextTick, ref } from 'vue';
 import { Link, Head, useForm } from '@inertiajs/vue3';
 import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
 import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
-// import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
+import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const recovery = ref(false);
 
@@ -33,36 +33,19 @@ const submit = () => {
     form.post('/two-factor-challenge');
 };
 </script>
-
+<script>
+export default {
+    layout: null
+}
+</script>
 <template>
     <Head title="Two Factor Authentication" />
 
-    <div class="auth-page-wrapper pt-5">
-        <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
-            <div class="bg-overlay"></div>
-
-            <div class="shape">
-
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
-                    <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
-                </svg>
-            </div>
-        </div>
-
+    <div class="auth-page-wrapper pt-5 d-flex justify-content-center align-items-center min-vh-100">
+       
         <div class="auth-page-content">
             <BContainer>
-                <BRow>
-                    <BCol lg="12">
-                        <div class="text-center mt-sm-5 mb-4 text-white-50">
-                            <div>
-                                <Link href="/" class="d-inline-block auth-logo">
-                                <img src="@assets/images/logo-light.png" alt="" height="20">
-                                </Link>
-                            </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
-                        </div>
-                    </BCol>
-                </BRow>
+                
 
                 <BRow class="justify-content-center">
                     <BCol md="8" lg="6" xl="5">
@@ -79,8 +62,8 @@ const submit = () => {
 
                                 <div class="p-2 mt-4">
                                     <div class="text-muted text-center mb-4 mx-lg-3">
-                                        <h4 class="">Two Factor Authentication</h4>
-                                        <div class="text-sm text-muted">
+                                        <h4 class="fs-15">Two Factor Authentication</h4>
+                                        <div class="text-sm fs-12 text-muted">
                                             <template v-if="! recovery">
                                                 Please confirm access to your account by entering the authentication code provided by your authenticator application.
                                             </template>
@@ -91,9 +74,9 @@ const submit = () => {
                                         </div>
                                     </div>
 
-                                    <form @submit.prevent="submit">
+                                    <form class="customform" @submit.prevent="submit">
                                         <div v-if="! recovery">
-                                            <InputLabel for="code" value="Code" />
+                                            <!-- <InputLabel for="code" value="Code" /> -->
                                             <TextInput
                                                 id="code"
                                                 ref="codeInput"
@@ -101,8 +84,9 @@ const submit = () => {
                                                 type="text"
                                                 inputmode="numeric"
                                                 autofocus
-                                                placeholder="Enter the code that you recieve your authenticator app"
+                                                placeholder="Enter the 6 digit code"
                                                 autocomplete="one-time-code"
+                                                class="text-center"
                                                 :class="{ 'is-invalid' : form.errors.code }"
                                             />
                                             <InputError class="mt-2" :message="form.errors.code" />
@@ -156,3 +140,8 @@ const submit = () => {
         </footer>
     </div>
 </template>
+<style>
+.auth-page-wrapper {
+    background-color: hsl(201, 80%, 82%);
+}
+</style>

@@ -12,6 +12,8 @@
     "krad-course": "Courses",
     "krad-certifications": "Certifications",
 
+    "krad-dropdown": "Dropdowns",
+
     "krad-location": "Location",
     "krad-region": "Region",
     "krad-province": "Province",
@@ -20,6 +22,7 @@
 
     "krad-configuration": "Configuration",
     "krad-utility": "Utility",
+    "krad-users": "User Management",
     "krad-logs": "Logs",
     "krad-activity": "Activity Logs",
     "krad-authentication": "Authentication Logs",

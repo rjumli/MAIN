@@ -27,6 +27,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
                 Route::get('/activities','activity');
             });
         });
+        Route::resource('/users', App\Http\Controllers\Utility\UserController::class);
         Route::resource('/backups', App\Http\Controllers\Utility\BackupController::class);
     });
+
+    Route::prefix('lists')->group(function(){
+        Route::resource('/locations', App\Http\Controllers\Lists\LocationController::class);
+        Route::resource('/dropdowns', App\Http\Controllers\Lists\DropdownController::class);
+    }); 
 });

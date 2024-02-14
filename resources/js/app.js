@@ -2,6 +2,7 @@ import './bootstrap';
 import '../scss/config/default/app.scss';
 import '@vueform/slider/themes/default.css';
 import '../scss/mermaid.min.css';
+import "@vueform/multiselect/themes/default.css";
 
 import { createApp, h } from 'vue';
 import { createInertiaApp, Link, Head } from '@inertiajs/vue3';
@@ -21,11 +22,10 @@ AOS.init({
 });
 
 createInertiaApp({
-    title: title => title ? `STSIMS | ${title}` : 'STSIMS',
+    title: title => title ? `DOST | ${title}` : 'DOST',
     resolve: (name) => {
         const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
         let page = pages[`./Pages/${name}.vue`].default
-        
         if(page.layout === undefined){
             page.layout = Layout;
         }

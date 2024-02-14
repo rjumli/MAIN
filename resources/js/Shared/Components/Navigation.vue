@@ -452,7 +452,7 @@ export default {
             </BButton>
           </div>
 
-          <BDropdown variant="ghost-dark" dropstart class="ms-1 dropdown"
+          <!-- <BDropdown variant="ghost-dark" dropstart class="ms-1 dropdown"
             :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }"
             toggle-class="btn-icon btn-topbar rounded-circle arrow-none" id="page-header-notifications-dropdown"
             menu-class="dropdown-menu-lg dropdown-menu-end p-0" auto-close="outside">
@@ -710,7 +710,6 @@ export default {
               <BTab title="Alerts" class="p-4">
                 <simplebar data-simplebar style="max-height: 300px" class="pe-2">
                   <div class="w-25 w-sm-50 pt-3 mx-auto">
-                    <!-- <img src="@assets/images/svg/bell.svg" class="img-fluid" alt="user-pic" /> -->
                   </div>
                   <div class="text-center pb-5 mt-2">
                     <h6 class="fs-18 fw-semibold lh-base">
@@ -720,7 +719,7 @@ export default {
                 </simplebar>
               </BTab>
             </BTabs>
-          </BDropdown>
+          </BDropdown> -->
 
           <BDropdown variant="link" class="ms-sm-3 header-item topbar-user" toggle-class="rounded-circle arrow-none" menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -14, crossAxis: 0, mainAxis: 0 }">
             <template #button-content>
