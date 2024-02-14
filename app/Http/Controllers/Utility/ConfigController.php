@@ -17,7 +17,8 @@ class ConfigController extends Controller
 
     public function index(){
         return inertia('Modules/Utility/Config/Index',[
-            'variables' => $this->config->variables()
+            'variables' => $this->config->variables(),
+            'configuration' =>  $this->config->configuration()
         ]);
     }
 

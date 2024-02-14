@@ -2,6 +2,7 @@
 
 namespace App\Services\Utility;
 
+use App\Models\Configuration;
 use Illuminate\Support\Facades\Artisan;
 
 class ConfigService
@@ -35,6 +36,11 @@ class ConfigService
             ['name' => 'MAIL_ENCRYPTION','value' => $mail_encryption,'line' => true],
            
         ];
+    }
+
+    public function configuration(){
+        $data = Configuration::where('id',1)->first();
+        return $data;
     }
 
     public function env($request){
