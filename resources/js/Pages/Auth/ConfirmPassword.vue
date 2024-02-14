@@ -21,7 +21,8 @@
                                         <TextInput id="username" type="text" class="" style="display: none;" autocomplete="username"  />
                                         <div class="mb-3">
                                             <InputLabel for="password" value="Password" />
-                                            <TextInput id="password" ref="passwordInput" v-model="form.password" type="password" class="" required placeholder="Enter your password" autocomplete="current-password" autofocus />
+                                            <TextInput id="password" ref="passwordInput" v-model="form.password" type="password" class="" required placeholder="Enter your password" autocomplete="current-password" autofocus :class="{ 'is-invalid' : form.errors.password }"/>
+                                            <InputError :message="form.errors.password" />
                                         </div>
                                         <div class="mb-2 mt-1">
                                             <BButton variant="primary" class="w-100" type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Unlock</BButton>
@@ -49,6 +50,7 @@ import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
 import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
+import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
 const form = useForm({
     password: '',
 });
@@ -57,7 +59,6 @@ const submit = () => {
     form.post('/user/confirm-password', {
         onFinish: () => {
             form.reset();
-            passwordInput.value.focus();
         },
     });
 };
