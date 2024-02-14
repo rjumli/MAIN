@@ -106,7 +106,7 @@ const disableTwoFactorAuthentication = () => {
             <BCardTitle>Two Factor Authentication</BCardTitle>
             <p class="text-muted mb-0">Add additional security to your account using two factor authentication.</p>
         </BCardHeader>
-        <BCardBody class="p-4">
+        <BCardBody class="p-4" style="height: calc(100vh - 300px); overflow: auto;">
             <h5 v-if="twoFactorEnabled && !confirming">
                 You have enabled two factor authentication.
             </h5>

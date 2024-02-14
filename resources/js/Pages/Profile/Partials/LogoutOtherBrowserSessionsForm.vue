@@ -43,7 +43,7 @@ const closeModal = () => {
             <BCardTitle>Browser Sessions</BCardTitle>
             <p class="text-muted mb-0">Manage and log out your active sessions on other browsers and devices.</p>
         </BCardHeader>
-        <BCardBody class="p-4">
+        <BCardBody class="p-4" style="height: calc(100vh - 300px); overflow: auto;">
             <div class="text-sm text-muted">
                 If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
             </div>

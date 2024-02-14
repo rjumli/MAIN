@@ -26,7 +26,7 @@ const hasActions = computed(() => !!useSlots().actions);
                         <BCardTitle>{{ title }}</BCardTitle>
                         <p class="text-muted mb-0">{{ description }}</p>
                     </BCardHeader>
-                    <BCardBody class="p-4">
+                    <BCardBody class="p-4" style="height: calc(100vh - 300px); overflow: auto;">
                         <div class="mb-3">
                             <slot name="form" />
                         </div>
