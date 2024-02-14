@@ -22,6 +22,7 @@
 
     "krad-configuration": "Configuration",
     "krad-utility": "Utility",
+    "krad-config": "System Configuration",
     "krad-users": "User Management",
     "krad-logs": "Logs",
     "krad-activity": "Activity Logs",

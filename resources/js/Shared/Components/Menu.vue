@@ -110,6 +110,9 @@
                             <li class="nav-item">
                               <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Users') }" href="/utility/users">{{ $t("krad-users") }}</Link>
                             </li>
+                           <li class="nav-item">
+                              <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Config') }" href="/utility/config">{{ $t("krad-config") }}</Link>
+                            </li>
                             <li class="nav-item">
                                 <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Backups') }" href="/utility/backups">{{ $t("krad-backup") }}</Link>
                             </li>

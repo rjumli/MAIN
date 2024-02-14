@@ -20,19 +20,22 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/', 'dashboard');
     });
 
-    Route::prefix('utility')->group(function(){
-        Route::prefix('logs')->group(function(){
-            Route::controller(App\Http\Controllers\Utility\LogController::class)->group(function () {
-                Route::get('/authentications','authentication');
-                Route::get('/activities','activity');
-            });
-        });
-        Route::resource('/users', App\Http\Controllers\Utility\UserController::class);
-        Route::resource('/backups', App\Http\Controllers\Utility\BackupController::class);
-    });
-
     Route::prefix('lists')->group(function(){
         Route::resource('/locations', App\Http\Controllers\Lists\LocationController::class);
         Route::resource('/dropdowns', App\Http\Controllers\Lists\DropdownController::class);
     }); 
+
+    Route::middleware(['nothing'])->group(function () {
+        Route::prefix('utility')->group(function(){
+            Route::prefix('logs')->group(function(){
+                Route::controller(App\Http\Controllers\Utility\LogController::class)->group(function () {
+                    Route::get('/authentications','authentication');
+                    Route::get('/activities','activity');
+                });
+            });
+            Route::resource('/config', App\Http\Controllers\Utility\ConfigController::class);
+            Route::resource('/users', App\Http\Controllers\Utility\UserController::class);
+            Route::resource('/backups', App\Http\Controllers\Utility\BackupController::class);
+        });
+    });
 });

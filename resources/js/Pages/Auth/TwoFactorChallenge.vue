@@ -93,19 +93,34 @@ export default {
                                         </div>
                             
                                         <div v-else>
-                                            <InputLabel for="recovery_code" value="Recovery Code" />
+                                            <!-- <InputLabel for="recovery_code" value="Recovery Code" /> -->
                                             <TextInput
                                                 id="recovery_code"
                                                 ref="recoveryCodeInput"
                                                 v-model="form.recovery_code"
                                                 type="text"
+                                                placeholder="Enter recovery code"
                                                 autocomplete="one-time-code"
+                                                class="text-center"
                                                 :class="{ 'is-invalid' : form.errors.recovery_code }"
                                             />
                                             <InputError class="mt-2" :message="form.errors.recovery_code" />
                                         </div>
+
+                                        <div class="mt-4">
+                                            <BButton variant="primary" class="w-100" type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Log In</BButton>
+                                        </div>
+
+                                         <div class="mt-4 text-center">
+                                            <p class="mb-0" v-if="!recovery"> Use a recovery code? 
+                                                <a style="cursor: pointer;" @click.prevent="toggleRecovery" class="fw-semibold text-primary text-decoration-underline"> Click here</a>
+                                            </p>
+                                            <p class="mb-0" v-else> Use an authentication code? 
+                                                <a style="cursor: pointer;" @click.prevent="toggleRecovery" class="fw-semibold text-primary text-decoration-underline"> Click here</a>
+                                            </p>
+                                        </div>
                             
-                                        <div class="d-flex align-items-center justify-content-end mt-4">
+                                        <!-- <div class="d-flex align-items-center justify-content-end mt-4">
                                             <button type="button" class="btn btn-primary me-1" @click.prevent="toggleRecovery">
                                                 <template v-if="! recovery">
                                                     Use a recovery code
@@ -117,7 +132,7 @@ export default {
                                             </button>
                             
                                             <BButton variant="success" type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Log in</BButton>
-                                        </div>
+                                        </div> -->
                                     </form>
                                 </div>
                             </BCardBody>
