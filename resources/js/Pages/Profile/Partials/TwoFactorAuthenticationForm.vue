@@ -192,7 +192,7 @@ const disableTwoFactorAuthentication = () => {
                     </ConfirmsPassword>
 
                     <ConfirmsPassword @confirmed="disableTwoFactorAuthentication">
-                        <BButton v-if="!confirming" variant="danger" type="button"  :class="{ 'opacity-25': disabling }" :disabled="disabling">Disable</BButton>
+                        <BButton v-if="!confirming" variant="danger" type="button" :class="{ 'opacity-25': disabling }" :disabled="disabling">Disable</BButton>
                     </ConfirmsPassword>
                 </div>
             </div>

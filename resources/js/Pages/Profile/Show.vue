@@ -107,7 +107,7 @@ export default {
 
             <div class="col-md-9" style="margin-top: 6px;">
                 <UpdateProfileInformationForm v-if="activeTab === 1" :user="$page.props.auth.user" :profile="$page.props.user.data"/>
-                <Security v-if="activeTab === 2" />
+                <Security v-if="activeTab === 2" :requires-confirmation="confirmsTwoFactorAuthentication"/>
                 <TwoFactorAuthenticationForm v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" />
                 <LogoutOtherBrowserSessionsForm v-if="activeTab === 4" :sessions="sessions" />
             </div>

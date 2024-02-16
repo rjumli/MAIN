@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-floating mb-n4">
-                            <TextInput id="current_password" v-model="form.current_password" type="password" class="form-control" autofocus placeholder="Please current_password" autocomplete="current_password" required :class="{ 'is-invalid': form.errors.current_password}" />
+                            <TextInput id="current_password" v-model="form.current_password" :type="showPassword ? 'text' : 'password'" class="form-control" autofocus placeholder="Please current_password" autocomplete="current_password" required :class="{ 'is-invalid': form.errors.current_password}" />
                             <InputLabel for="current_password" value="Current Password"/>
                             <InputError :message="form.errors.current_password" />
                         </div>
@@ -18,20 +18,20 @@
                     </div>
                     <div class="col-md-12 mt-n1">
                         <div class="form-floating mb-n2">
-                            <TextInput id="password" v-model="form.password" type="password" class="form-control" autofocus placeholder="Please enter password" autocomplete="password" required :class="{ 'is-invalid': form.errors.password }" />
+                            <TextInput id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'" class="form-control" autofocus placeholder="Please enter password" autocomplete="password" required :class="{ 'is-invalid': form.errors.password }" />
                             <InputLabel for="password" value="New Password"/>
                             <InputError :message="form.errors.password"/>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 mb-n3">
                         <div class="form-floating">
-                            <TextInput id="password_confirmation" v-model="form.password_confirmation" type="password" class="form-control" autofocus placeholder="Please enter password_confirmation" autocomplete="password_confirmation" required :class="{ 'is-invalid': form.errors.password_confirmation }" />
+                            <TextInput id="password_confirmation" v-model="form.password_confirmation" :type="showPassword ? 'text' : 'password'" class="form-control" autofocus placeholder="Please enter password_confirmation" autocomplete="password_confirmation" required :class="{ 'is-invalid': form.errors.password_confirmation }" />
                             <InputLabel for="password_confirmation" value="Re-type new Password"/>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <div class="col-md-12 mb-n5 mt-5">
+                        <div class="form-check form-switch ">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="showPassword">
                             <label class="form-check-label" for="flexSwitchCheckChecked">Show Password</label>
                         </div>
                     </div>
@@ -54,6 +54,7 @@ export default {
     data(){
         return {
             showModal: false,
+            showPassword: false,
             form: useForm({
                 current_password: '',
                 password: '',

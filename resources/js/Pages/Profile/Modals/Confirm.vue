@@ -5,21 +5,6 @@ import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 
 const emit = defineEmits(['confirmed']);
 
-defineProps({
-    title: {
-        type: String,
-        default: 'Confirm Password',
-    },
-    content: {
-        type: String,
-        default: 'For your security, please confirm your password to continue.',
-    },
-    button: {
-        type: String,
-        default: 'Confirm',
-    },
-});
-
 const confirmingPassword = ref(false);
 
 const form = reactive({
@@ -75,28 +60,25 @@ const closeModal = () => {
         </span>
 
         <b-modal v-model="confirmingPassword" title="Confirm Password" header-class="p-3 bg-light" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>    
-            <p class="text-muted fs-14 mb-3">{{ content }}</p>
-            <div class="mb-3">
-                <TextInput
-                    ref="passwordInput"
-                    v-model="form.password"
-                    type="password"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    @keyup.enter="confirmPassword"
-                    :class="{ 'is-invalid': form.error }"
-                />
-
-                <InputError :message="form.error" class="mt-2" />
+            <div class="p-2">
+                <form class="customform" @submit.prevent="submit">
+                    <div class="row g-3">
+                        <div class="col-md-12 text-muted fs-12 mb-n2">
+                            For your security, please confirm your <b class="text-danger">password</b> to continue.
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-n2">                            
+                                <TextInput id="password" ref="passwordInput" v-model="form.password" type="password" class="form-control" autofocus placeholder="Please enter password" autocomplete="password" required :class="{ 'is-invalid': form.error}" />
+                                <InputError :message="form.error" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <div class="text-end">
-                <BButton variant="danger" @click="closeModal">Cancel</BButton>
-                <BButton variant="success" class="ms-1" :class="{ 'opacity-25': form.processing }"
-                :disabled="form.processing"
-                @click="confirmPassword">{{ button }}</BButton>
-            </div>
-
+             <template v-slot:footer>
+                <b-button @click="closeModal" variant="light" block>Cancel</b-button>
+                <b-button @click="confirmPassword" variant="primary" :disabled="form.processing" block><i class="ri-save-3-line align-bottom me-1"></i>Confirm</b-button>
+            </template>
         </b-modal>
     </span>
 </template>

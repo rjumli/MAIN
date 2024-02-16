@@ -14,7 +14,7 @@
                                 <p class="text-muted fs-12">Manage your passwords, login preferences and recovery methods.</p>
                                 <b-list-group>
                                     <BListGroupItem @click="openModal('password')" tag="button" class="list-group-item-action"><i class="ri-lock-password-fill me-2"></i>Change Password</BListGroupItem>
-                                    <BListGroupItem tag="button" class="list-group-item-action"><i class="ri-shield-keyhole-fill me-2"></i>Two-factor Aunthentication</BListGroupItem>
+                                    <BListGroupItem @click="openModal('twofactor')" tag="button" class="list-group-item-action"><i class="ri-shield-keyhole-fill me-2"></i>Two-factor Aunthentication</BListGroupItem>
                                     <BListGroupItem tag="button" class="list-group-item-action"><i class="ri-window-fill me-2"></i>Browser Sessions</BListGroupItem>
                                 </b-list-group>
                             </div>
@@ -43,11 +43,16 @@
         </form>
     </div>
     <Password ref="password"/>
+    <TwoFactor :requires-confirmation="requiresConfirmation" ref="twofactor"/>
 </template>
 <script>
 import Password from '../Modals/Password.vue';
+import TwoFactor from '../Modals/TwoFactor.vue';
 export default {
-    components: { Password },
+    components: { Password, TwoFactor },
+    props: {
+        requiresConfirmation: Boolean,
+    },
     methods : {
         submit(){
 
@@ -56,6 +61,9 @@ export default {
             switch(data){
                 case 'password':
                     this.$refs.password.show();
+                break;
+                case 'twofactor':
+                    this.$refs.twofactor.show();
                 break;
             }
         }
