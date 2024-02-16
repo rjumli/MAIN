@@ -1,11 +1,12 @@
 <script setup>
-import { Head } from "@inertiajs/vue3"
+import { Head, useForm } from "@inertiajs/vue3"
 import Layout from "@/Shared/Layouts/Main.vue";
 import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.vue';
 import LogoutOtherBrowserSessionsForm from '@/Pages/Profile/Partials/LogoutOtherBrowserSessionsForm.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
+import Security from './Pages/Security.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 
 defineProps({
@@ -19,12 +20,36 @@ export default {
     data() {
         return {
             activeTab: 1, 
+            form: useForm({
+                _method: 'PUT',
+                photo: null,
+            }),
         };
     },
     methods: {
         show(tab){
             this.activeTab = tab;
-        }
+        },
+        previewImage(e) {
+            var fileInput = document.querySelector(".profile-img-file-input");
+            var preview = document.querySelector(".user-profile-image");
+            var file = fileInput.files[0];
+            this.form.photo = file;
+            var reader = new FileReader();
+
+            reader.addEventListener("load", () => { 
+                preview.src = reader.result;
+                this.form.post('/user/profile-information', {
+                    errorBag: 'updateProfileInformation',
+                    preserveScroll: true,
+                    onSuccess: () => clearPhotoFileInput(),
+                });
+            }, false);
+
+            if (file) { 
+                reader.readAsDataURL(file); 
+            }
+        },
     }
 }
 </script>
@@ -41,7 +66,7 @@ export default {
                             <!-- <img src="@assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image" /> -->
                             <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle avatar-xl img-thumbnail user-profile-image material-shadow" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                            <input id="profile-img-file-input" type="file" class="profile-img-file-input" />
+                            <input id="profile-img-file-input" type="file" class="profile-img-file-input" @change="previewImage"/>
                             <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
                                 <span class="avatar-title rounded-circle bg-light text-body">
                                 <i class="ri-camera-fill"></i>
@@ -55,6 +80,12 @@ export default {
                     </BCardBody>
                 </BCard>
 
+                
+                <BCard no-body class="mt-1">
+                    <BCardBody class="mb-n3">
+                        <p class="text-muted fs-10">Last Login : {{$page.props.login_at}} ({{$page.props.ip_address}})</p>
+                    </BCardBody>
+                </BCard>
                 <b-list-group class="list-group-fill-success">
                     <BListGroupItem :active="activeTab === 1" href="#" class="list-group-item-action" @click="show(1)">
                         <i class="ri-profile-fill align-middle me-2"></i>Personal Information
@@ -74,30 +105,12 @@ export default {
                 </b-list-group>
             </div>
 
-            <div class="col-md-9">
-                <UpdateProfileInformationForm v-if="activeTab === 1" :user="$page.props.auth.user" />
-                <UpdatePasswordForm v-if="activeTab === 2" />
+            <div class="col-md-9" style="margin-top: 6px;">
+                <UpdateProfileInformationForm v-if="activeTab === 1" :user="$page.props.auth.user" :profile="$page.props.user.data"/>
+                <Security v-if="activeTab === 2" />
                 <TwoFactorAuthenticationForm v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" />
                 <LogoutOtherBrowserSessionsForm v-if="activeTab === 4" :sessions="sessions" />
             </div>
         </div>
     </Layout>
 </template>
-  <!-- <div class="card">
-        <div class="card-body" style="height: calc(100vh - 220px); overflow: auto;">
-            <BTabs nav-class="nav-tabs nav-border-top nav-border-top-primary rounded">
-                <BTab class="nav-item" title="Personal Information" active>
-                    <UpdateProfileInformationForm :user="$page.props.auth.user" />
-                </BTab>
-                <BTab class="nav-item" title="Update Password">
-                    <UpdatePasswordForm />
-                </BTab>
-                <BTab class="nav-item" title="Two Factor Authentication">
-                    <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication" />
-                </BTab>
-                <BTab class="nav-item" title="Browser Sessions">
-                    <LogoutOtherBrowserSessionsForm :sessions="sessions" />
-                </BTab>
-            </BTabs>
-        </div>
-    </div> -->

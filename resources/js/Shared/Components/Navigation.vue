@@ -731,9 +731,9 @@ export default {
                 </span>
               </span>
             </template>
-            <h6 class="dropdown-header">Welcome {{ $page.props.auth.user.name }}!</h6>
+            <h6 class="dropdown-header fs-10">Welcome {{ $page.props.auth.user.username }}!</h6>
             <Link class="dropdown-item" href="/user/profile"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
-            <span class="align-middle">Profile</span>
+            <span class="align-middle"> Profile</span>
             </Link>
             <Link class="dropdown-item" v-if="$page.props.jetstream.hasApiFeatures" href="/user/api-tokens"><i class="mdi mdi-key-variant text-muted fs-16 align-middle me-1"></i>
             <span class="align-middle"> API Tokens</span>

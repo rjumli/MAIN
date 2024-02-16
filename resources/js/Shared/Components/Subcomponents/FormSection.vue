@@ -20,7 +20,7 @@ const hasActions = computed(() => !!useSlots().actions);
 <template>
     <div class="">
         <div class="">
-            <form @submit.prevent="$emit('submitted')">
+            <form @submit.prevent="$emit('submitted')" class="customform">
                 <BCard no-body>
                     <BCardHeader>
                         <BCardTitle>{{ title }}</BCardTitle>

@@ -46,6 +46,8 @@ class HandleInertiaRequests extends Middleware
                 'status' => session('status'),
                 'type' => session('type')
             ],
+            'login_at' =>  (\Auth::check()) ? date('M d, Y g:i a', strtotime(\Auth::user()->previousLoginAt())) : '',
+            'ip_address' =>  (\Auth::check()) ? \Auth::user()->previousLoginIp() : '',
         ]);
     }
 }

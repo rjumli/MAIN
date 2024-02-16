@@ -678,3 +678,23 @@ File: Custom Css File
   max-width: 27%;
   height: calc(100vh - 180px);
 }
+
+.form-floating > .form-control {
+  height: 50px;
+  min-height: 50px;
+  line-height: 1;
+  padding-top: 1.300rem;
+  font-size: 12px;
+}
+
+.form-floating > .form-select {
+  height: 50px;
+  min-height: 50px;
+  line-height: 1;
+  padding-top: 1.300rem;
+  font-size: 12px;
+}
+
+.form-floating > .form-label {
+  font-size: 12px;
+}

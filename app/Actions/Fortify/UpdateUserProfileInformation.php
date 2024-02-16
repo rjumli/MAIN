@@ -18,23 +18,40 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
-            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'username' => ['sometimes','required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['sometimes','required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'firstname' => ['sometimes','required'],
+            'middlename' => ['sometimes','required'],
+            'lastname' => ['sometimes','required'],
+            'suffix' => ['sometimes','nullable'],
+            'mobile' => ['sometimes','required'],
+            'gender' => ['sometimes','required'],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
-
+        
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
-            $this->updateVerifiedUser($user, $input);
-        } else {
-            $user->forceFill([
-                'username' => $input['username'],
-                'email' => $input['email'],
-            ])->save();
+        if (isset($input['username']) && isset($input['username'])) {
+            if ($input['email'] !== $user->email &&
+                $user instanceof MustVerifyEmail) {
+                $this->updateVerifiedUser($user, $input);
+            } else {
+                $user->forceFill([
+                    'username' => $input['username'],
+                    'email' => $input['email']
+                ])->save();
+
+                $user->profile->forceFill([
+                    'firstname' => $input['firstname'],
+                    'middlename' => $input['middlename'],
+                    'lastname' => $input['lastname'],
+                    'suffix' => $input['suffix'],
+                    'mobile' => $input['mobile'],
+                    'gender' => $input['gender'],
+                ])->save();
+            }
         }
     }
 
