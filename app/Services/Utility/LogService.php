@@ -15,7 +15,7 @@ class LogService
     }
 
     public static function activity($request){
-        $data = Activity::with('causer.profile')->orderBy('created_at','DESC')->paginate($request->counts);
+        $data = Activity::with('causer.profile')->orderBy('created_at','DESC')->paginate($request->count);
         return LogActivityResource::collection($data);
     }
 

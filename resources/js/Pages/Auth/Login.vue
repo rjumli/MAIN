@@ -82,7 +82,7 @@ defineProps({
     status: String,
 });
 const form = useForm({
-    email: 'admin@stsims.com',
+    email: 'kradjumli@gmail.com',
     password: '123456789',
     remember: false,
 });

@@ -11,6 +11,7 @@ class LogActivityResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'status' => false,
             'log_name' => $this->log_name,
             'description' => $this->description,
             'event' => $this->event,

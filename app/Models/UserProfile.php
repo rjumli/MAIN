@@ -36,10 +36,11 @@ class UserProfile extends Model
         $this->attributes['middlename'] = ucwords(strtolower($value));
     }
 
+    public array $logExceptAttributes = ['password'];
     public function getActivitylogOptions(): LogOptions {
         return LogOptions::defaults()
         ->logFillable()
-        ->setDescriptionForEvent(fn(string $eventName) => "This profile has been {$eventName}")
+        ->setDescriptionForEvent(fn(string $eventName) => "$eventName the profile information")
         ->useLogName('User Profile')
         ->logOnlyDirty()
         ->dontSubmitEmptyLogs();

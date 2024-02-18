@@ -28,7 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
-        'is_active'
+        'is_active',
+        'password_changed_at'
     ];
 
     protected $hidden = [
@@ -53,8 +54,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getActivitylogOptions(): LogOptions {
         return LogOptions::defaults()
-        ->logFillable()
-        ->setDescriptionForEvent(fn(string $eventName) => "This user has been {$eventName}")
+        ->logOnly(['username','email','profile_photo_path'])
+        ->setDescriptionForEvent(fn(string $eventName) => "{$eventName} the user information")
         ->useLogName('User')
         ->logOnlyDirty()
         ->dontSubmitEmptyLogs();

@@ -9,6 +9,22 @@ class Log extends Model
 {
     use HasFactory;
     protected $table = 'authentication_log';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'authenticatable_type',
+        'authenticatable_id',
+        'ip_address',
+        'user_agent',
+        'login_at',
+        'logout_at',
+        'login_successful',
+        'location'
+    ];
+
+    protected $casts = [
+        'location' => 'array',
+    ];
 
     public function user()
     {

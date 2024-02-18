@@ -15,14 +15,14 @@
                                 <b-list-group>
                                     <BListGroupItem @click="openModal('password')" tag="button" class="list-group-item-action"><i class="ri-lock-password-fill me-2"></i>Change Password</BListGroupItem>
                                     <BListGroupItem @click="openModal('twofactor')" tag="button" class="list-group-item-action"><i class="ri-shield-keyhole-fill me-2"></i>Two-factor Aunthentication</BListGroupItem>
-                                    <BListGroupItem tag="button" class="list-group-item-action"><i class="ri-window-fill me-2"></i>Browser Sessions</BListGroupItem>
+                                    <BListGroupItem @click="openModal('session')" tag="button" class="list-group-item-action"><i class="ri-window-fill me-2"></i>Browser Sessions</BListGroupItem>
                                 </b-list-group>
                             </div>
                             <div class="col-md-6">
                                 <h5 class="mb-1 fs-14 text-primary">Security Checks</h5>
                                 <p class="text-muted fs-12">Review security issues by running checks across apps, devices and emails sent.</p>
                                 <b-list-group>
-                                    <BListGroupItem tag="button" class="list-group-item-action"><i class="ri-folder-shield-2-fill me-2"></i>Recovery Codes</BListGroupItem>
+                                    <BListGroupItem @click="openModal('recovery')" tag="button" class="list-group-item-action"><i class="ri-folder-shield-2-fill me-2"></i>Recovery Codes</BListGroupItem>
                                     <BListGroupItem tag="button" class="list-group-item-action"><i class=" ri-alarm-warning-fill me-2"></i>Login Alerts</BListGroupItem>
                                     <BListGroupItem tag="button" class="list-group-item-action"><i class="ri-error-warning-fill me-2"></i>Security Checkup</BListGroupItem>
                                 </b-list-group>
@@ -35,6 +35,8 @@
                                     </div>
                                     <h5 class="card-title fs-13 text-primary">Login History</h5>
                                 </div>
+
+                                
                             </div>
                         </div>
                     </div>
@@ -42,21 +44,34 @@
             </BCard>
         </form>
     </div>
+    <Recovery ref="recovery"/>
+    <Session :sessions="sessions" ref="session"/>
     <Password ref="password"/>
     <TwoFactor :requires-confirmation="requiresConfirmation" ref="twofactor"/>
 </template>
 <script>
+import Pagination from "@/Shared/Components/Pagination.vue";
+import Recovery from '../Modals/Recovery.vue';
+import Session from '../Modals/Session.vue';
 import Password from '../Modals/Password.vue';
 import TwoFactor from '../Modals/TwoFactor.vue';
 export default {
-    components: { Password, TwoFactor },
+    components: { Password, TwoFactor, Session, Recovery, Pagination },
     props: {
         requiresConfirmation: Boolean,
+        sessions: Array
+    },
+    data(){
+        return {
+            lists: [],
+            meta: {},
+            links: {},
+        }
+    },
+    created(){
+        this.getLogs();
     },
     methods : {
-        submit(){
-
-        },
         openModal(data){
             switch(data){
                 case 'password':
@@ -65,7 +80,25 @@ export default {
                 case 'twofactor':
                     this.$refs.twofactor.show();
                 break;
+                case 'session':
+                    this.$refs.session.show();
+                break;
+                case 'recovery':
+                    this.$refs.recovery.show();
+                break;
             }
+        },
+        getLogs(){
+            return axios.get('/utility/users',{
+                params : {
+                    option: 'logs'
+                }
+            })
+            .then(response => {
+                this.lists = response.data.data;
+                this.meta = response.data.meta;
+                this.links = response.data.links;      
+            });
         }
     }
 }

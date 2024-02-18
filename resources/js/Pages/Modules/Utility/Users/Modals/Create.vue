@@ -1,106 +1,63 @@
 <template>
-    <b-modal v-model="showModal" header-class="p-3 bg-light" size="lg" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
-        <template v-slot:header>
-            <h5 class="modal-title">{{type}} Staff</h5>
-            <button @click="hide()" type="button" class="btn-close" aria-label="Close"></button>
-        </template>
+    <b-modal v-model="showModal" header-class="p-3 bg-light" title="Test" style="--vz-modal-width: 700px;" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
         <form class="customform">
-            <div class="row mt-4">
-                <div class="col-md-3">
-                    <div class="text-center">
-                        <div class="profile-user position-relative d-inline-block mx-auto mb-2">
-                            <img src="/images/users/user-dummy-img.jpg"
-                                class="rounded-circle avatar-lg img-thumbnail user-profile-image"
-                                alt="user-profile-image">
-                            <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                <input id="profile-img-file-input" type="file"  @change="previewImage"
-                                    class="profile-img-file-input">
-                                <label for="profile-img-file-input"
-                                    class="profile-photo-edit avatar-xs">
-                                    <span class="avatar-title rounded-circle bg-light text-body">
-                                        <i class="ri-camera-fill"></i>
-                                    </span>
-                                </label>
+            <BRow>
+                <BCol lg="12">
+                 
+                  <div class="text-center mb-4 pt-2">
+                    <div class="position-relative d-inline-block">
+                      <div class="position-absolute bottom-0 end-0">
+                        <label for="member-image-input" class="mb-0" data-bs-toggle="tooltip" data-bs-placement="right"
+                          title="Select Member Image">
+                          <div class="avatar-xs">
+                            <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
+                              <i class="ri-image-fill"></i>
                             </div>
+                          </div>
+                        </label>
+                        <input class="form-control d-none" value="" id="member-image-input" type="file"
+                          accept="image/png, image/gif, image/jpeg">
+                      </div>
+                      <div class="avatar-lg">
+                        <div class="avatar-title bg-light rounded-circle">
+                          <img src="@assets/images/users/user-dummy-img.jpg" id="member-img"
+                            class="avatar-md rounded-circle h-auto" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row g-2">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-n1">
+                            <input type="text" class="form-control" id="designation" placeholder="Please enter firstname" required>
+                            <label for="designation" class="form-label">Firstname</label>
+                            <div class="invalid-feedback">Please enter firstname</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Firstname: <span v-if="form.errors" v-text="form.errors.firstname" class="haveerror"></span></label>
-                                <input type="text" class="form-control" v-model="profile.firstname" style="text-transform: capitalize;">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label>Middlename: <span v-if="form.errors" v-text="form.errors.middlename" class="haveerror"></span></label>
-                                <input type="text" class="form-control" v-model="profile.middlename" style="text-transform: capitalize;"> 
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label>Lastname: <span v-if="form.errors" v-text="form.errors.lastname" class="haveerror"></span></label>
-                                <input type="text" class="form-control" v-model="profile.lastname" style="text-transform: capitalize;">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label>Suffix: <span v-if="form.errors" v-text="form.errors.suffix" class="haveerror"></span></label>
-                                <input type="text" class="form-control" v-model="profile.suffix" style="text-transform: capitalize;">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email: <span v-if="form.errors" v-text="form.errors.email" class="haveerror"></span></label>
-                                <input type="email" class="form-control" v-model="user.email" style="text-transform: lowercase;">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label>Mobile No.: <span v-if="form.errors" v-text="form.errors.mobile" class="haveerror"></span></label>
-                                <input type="text" class="form-control" v-model="profile.mobile">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label>Username: <span v-if="form.errors" v-text="form.errors.username" class="haveerror"></span></label>
-                                <input type="text" class="form-control" v-model="user.username" style="text-transform: lowercase;">
-                            </div>
-                        </div>
-                        <div class="col-md-6" style="margin-top: -1px; margin-bottom: -15px;">
-                            <div class="row" style="margin-top: 20px;">
-                                <div class="col-md-4">
-                                    <div class="custom-control custom-radio mb-3">
-                                        <input type="radio" id="customRadio1" class="custom-control-input me-2"  value="M" v-model="profile.gender">
-                                        <label class="custom-control-label" for="customRadio1">Male</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="custom-control custom-radio mb-3">
-                                        <input type="radio" id="customRadio2" class="custom-control-input me-2" value="F" v-model="profile.gender">
-                                        <label class="custom-control-label" for="customRadio2">Female</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-md-12">
-                            <div class="form-group mb-3">
-                                <label>Agency: <span v-if="form.errors" v-text="form.errors.role" class="haveerror"></span></label>
-                                <Multiselect 
-                                v-model="user.agency" 
-                                :options="agencies"
-                                :allow-empty="false"
-                                :show-labels="false"
-                                 label="name" track-by="name"
-                                placeholder="Select Agency"/>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-n1">
+                            <input type="text" class="form-control" id="designation" placeholder="Please enter firstname" required>
+                            <label for="designation" class="form-label">Lastname</label>
+                            <div class="invalid-feedback">Please enter firstname</div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="designation" placeholder="Please enter firstname" required>
+                            <label for="designation" class="form-label">Email</label>
+                            <div class="invalid-feedback">Please enter firstname</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="designation" placeholder="Please enter firstname" required>
+                            <label for="designation" class="form-label">Mobile</label>
+                            <div class="invalid-feedback">Please enter firstname</div>
+                        </div>
+                    </div>
+                  </div>
+                </BCol>
+              </BRow>
         </form>
         <template v-slot:footer>
             <b-button @click="hide()" variant="light" block>Cancel</b-button>

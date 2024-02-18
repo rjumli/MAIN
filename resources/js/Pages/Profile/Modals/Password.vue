@@ -17,16 +17,16 @@
                         <hr class="text-muted"/>
                     </div>
                     <div class="col-md-12 mt-n1">
-                        <div class="form-floating mb-n2">
+                        <div class="form-floating mb-n3">
                             <TextInput id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'" class="form-control" autofocus placeholder="Please enter password" autocomplete="password" required :class="{ 'is-invalid': form.errors.password }" />
                             <InputLabel for="password" value="New Password"/>
-                            <InputError :message="form.errors.password"/>
                         </div>
                     </div>
-                    <div class="col-md-12 mb-n3">
+                    <div class="col-md-12 mb-n4">
                         <div class="form-floating">
-                            <TextInput id="password_confirmation" v-model="form.password_confirmation" :type="showPassword ? 'text' : 'password'" class="form-control" autofocus placeholder="Please enter password_confirmation" autocomplete="password_confirmation" required :class="{ 'is-invalid': form.errors.password_confirmation }" />
+                            <TextInput id="password_confirmation" v-model="form.password_confirmation" :type="showPassword ? 'text' : 'password'" class="form-control" autofocus placeholder="Please enter password_confirmation" autocomplete="password_confirmation" required :class="{ 'is-invalid': form.errors.password }" />
                             <InputLabel for="password_confirmation" value="Re-type new Password"/>
+                            <InputError :message="form.errors.password"/>
                         </div>
                     </div>
                     <div class="col-md-12 mb-n5 mt-5">

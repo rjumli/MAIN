@@ -7,6 +7,9 @@ import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthe
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
 import Security from './Pages/Security.vue';
+import Authentication from './Pages/Authentication.vue';
+import Activity from './Pages/Activity.vue';
+import Overview from './Pages/Overview.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 
 defineProps({
@@ -60,9 +63,9 @@ export default {
         <div class="row">
             <div class="col-md-3">
                 <BCard no-body class="">
-                    <BCardBody class="p-4">
+                    <BCardBody class="p-3" style="height: calc(100vh - 220px); overflow: auto;">
                         <div class="text-center">
-                        <div class="profile-user position-relative d-inline-block mx-auto mb-4">
+                        <div class="profile-user position-relative d-inline-block mx-auto mb-3">
                             <!-- <img src="@assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image" /> -->
                             <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle avatar-xl img-thumbnail user-profile-image material-shadow" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
@@ -77,39 +80,44 @@ export default {
                         <h5 class="fs-16 mb-1">{{ $page.props.user.data.name }}</h5>
                         <p class="text-muted mb-0">Administrator</p>
                         </div>
+                        <hr class="text-muted">
+                        <b-list-group class="list-group-fill-success mt-4">
+                            <BListGroupItem :active="activeTab === 1" href="#" class="list-group-item-action" @click="show(1)">
+                                <i class="ri-apps-2-fill align-middle me-2"></i>Overview
+                            </BListGroupItem>
+                            <BListGroupItem :active="activeTab === 2" href="#" class="list-group-item-action" @click="show(2)">
+                                <i class="ri-profile-fill align-middle me-2"></i>Personal Information
+                            </BListGroupItem>
+                            <BListGroupItem :active="activeTab === 3" href="#" class="list-group-item-action" @click="show(3)">
+                                <i class="ri-shield-check-line align-middle me-2"></i>Password & Security
+                            </BListGroupItem>
+                            <BListGroupItem :active="activeTab === 4" href="#" class="list-group-item-action" @click="show(4)">
+                                <i class="ri-shield-keyhole-fill align-middle me-2"></i>Authentication Logs
+                            </BListGroupItem>
+                            <BListGroupItem :active="activeTab === 5" href="#" class="list-group-item-action" @click="show(5)">
+                                <i class="ri-history-line align-middle me-2"></i>Activity Logs
+                            </BListGroupItem>
+                        </b-list-group>
                     </BCardBody>
                 </BCard>
 
-                
+<!--                 
                 <BCard no-body class="mt-1">
                     <BCardBody class="mb-n3">
                         <p class="text-muted fs-10">Last Login : {{$page.props.login_at}} ({{$page.props.ip_address}})</p>
                     </BCardBody>
-                </BCard>
-                <b-list-group class="list-group-fill-success">
-                    <BListGroupItem :active="activeTab === 1" href="#" class="list-group-item-action" @click="show(1)">
-                        <i class="ri-profile-fill align-middle me-2"></i>Personal Information
-                    </BListGroupItem>
-                    <BListGroupItem :active="activeTab === 2" href="#" class="list-group-item-action" @click="show(2)">
-                        <i class="ri-shield-check-line align-middle me-2"></i>Password & Security
-                    </BListGroupItem>
-                    <BListGroupItem :active="activeTab === 3" href="#" class="list-group-item-action" @click="show(3)">
-                        <i class="ri-shield-keyhole-fill align-middle me-2"></i>Two Factor Authentication
-                    </BListGroupItem>
-                    <BListGroupItem :active="activeTab === 4" href="#" class="list-group-item-action" @click="show(4)">
-                        <i class="ri-mac-fill align-middle me-2"></i>Browser sessions
-                    </BListGroupItem>
-                    <BListGroupItem :active="activeTab === 5" href="#" class="list-group-item-action" @click="show(5)">
-                        <i class="ri-history-line align-middle me-2"></i>Activity Logs
-                    </BListGroupItem>
-                </b-list-group>
+                </BCard> -->
+                
             </div>
 
             <div class="col-md-9" style="margin-top: 6px;">
-                <UpdateProfileInformationForm v-if="activeTab === 1" :user="$page.props.auth.user" :profile="$page.props.user.data"/>
-                <Security v-if="activeTab === 2" :requires-confirmation="confirmsTwoFactorAuthentication"/>
-                <TwoFactorAuthenticationForm v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" />
-                <LogoutOtherBrowserSessionsForm v-if="activeTab === 4" :sessions="sessions" />
+                <Overview v-if="activeTab === 1"/>
+                <UpdateProfileInformationForm v-if="activeTab === 2" :user="$page.props.auth.user" :profile="$page.props.user.data"/>
+                <Security v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" :sessions="sessions"/>
+                <Authentication v-if="activeTab === 4"/>
+                <Activity v-if="activeTab === 5"/>
+                <!-- <TwoFactorAuthenticationForm v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" /> -->
+                <!-- <LogoutOtherBrowserSessionsForm v-if="activeTab === 4" :sessions="sessions" /> -->
             </div>
         </div>
     </Layout>
