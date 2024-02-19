@@ -739,9 +739,9 @@ export default {
             <span class="align-middle"> API Tokens</span>
             </Link>
             <div class="dropdown-divider"></div>
-            <Link class="dropdown-item" href="#">
-            <i class=" mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i>
-            <span class="align-middle"> Messages</span>
+            <Link class="dropdown-item" href="/utilities/overview">
+            <i class="ri-settings-4-fill text-muted fs-16 align-middle me-1"></i>
+            <span class="align-middle">Utility</span>
             </Link>
             <div class="dropdown-divider"></div>
             <Link class="dropdown-item" href="/user/confirm-password"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i>

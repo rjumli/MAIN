@@ -1,5 +1,5 @@
 <template>
-    <b-modal v-model="showModal" header-class="p-3 bg-light" title="Test" style="--vz-modal-width: 700px;" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
+    <b-modal v-model="showModal" header-class="p-3 bg-light" title="Test" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
         <form class="customform">
             <BRow>
                 <BCol lg="12">
@@ -55,6 +55,7 @@
                             <div class="invalid-feedback">Please enter firstname</div>
                         </div>
                     </div>
+                    
                   </div>
                 </BCol>
               </BRow>

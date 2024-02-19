@@ -26,6 +26,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     }); 
 
     Route::middleware(['nothing'])->group(function () {
+        Route::get('/utilities/{type}', [App\Http\Controllers\Utility\IndexController::class, 'index']);
         Route::prefix('utility')->group(function(){
             Route::prefix('logs')->group(function(){
                 Route::controller(App\Http\Controllers\Utility\LogController::class)->group(function () {
