@@ -19,25 +19,31 @@ class LogService
         return LogActivityResource::collection($data);
     }
 
-    public function statistics(){
+    public function statistics($id = null){
         return [
             [
                 'name' => 'Successful Login',
                 'icon' => 'ri-checkbox-circle-fill',
                 'color' => 'text-success',
-                'total' => Log::where('login_successful',1)->count()
+                'total' => Log::when($id, function ($query, $id) {
+                    $query->where('authenticatable_id',$id);
+                })->where('login_successful',1)->count()
             ],
             [
                 'name' => 'Suspicious Login',
                 'icon' => 'ri-error-warning-fill',
                 'color' => 'text-warning',
-                'total' => Log::where('login_successful',1)->where('ip_address','!=','::1')->count()
+                'total' => Log::when($id, function ($query, $id) {
+                    $query->where('authenticatable_id',$id);
+                })->where('login_successful',1)->where('ip_address','!=','::1')->count()
             ],
             [
                 'name' => 'Login Attempts',
                 'icon' => 'ri-close-circle-fill',
                 'color' => 'text-danger',
-                'total' => Log::where('login_successful',0)->count(),
+                'total' => Log::when($id, function ($query, $id) {
+                    $query->where('authenticatable_id',$id);
+                })->where('login_successful',0)->count(),
             ]
         ];
     }

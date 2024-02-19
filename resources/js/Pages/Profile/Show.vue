@@ -15,6 +15,7 @@ import PageHeader from '@/Shared/Components/PageHeader.vue';
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
     sessions: Array,
+    logins: Object
 });
 </script>
 <script>
@@ -113,7 +114,7 @@ export default {
             <div class="col-md-9" style="margin-top: 6px;">
                 <Overview v-if="activeTab === 1"/>
                 <UpdateProfileInformationForm v-if="activeTab === 2" :user="$page.props.auth.user" :profile="$page.props.user.data"/>
-                <Security v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" :sessions="sessions"/>
+                <Security v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" :sessions="sessions" :logins="logins"/>
                 <Authentication v-if="activeTab === 4"/>
                 <Activity v-if="activeTab === 5"/>
                 <!-- <TwoFactorAuthenticationForm v-if="activeTab === 3" :requires-confirmation="confirmsTwoFactorAuthentication" /> -->

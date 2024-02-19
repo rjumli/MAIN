@@ -18,6 +18,9 @@ class LogController extends Controller
             case 'lists':
                return $this->log->authentication($request);
             break;
+            case 'statistics':
+                return $this->log->statistics(\Auth::user()->id);
+             break;
             default : 
             return inertia('Modules/Utility/Logs/Authentications/Index',[
                 'statistics' => $this->log->statistics()
