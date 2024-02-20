@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('firstname',150);
             $table->string('lastname',150);
-            $table->string('middlename',100);
+            $table->string('middlename',100)->nullable();
             $table->string('suffix',10)->nullable();
             $table->string('gender',8);
             $table->string('mobile',15);

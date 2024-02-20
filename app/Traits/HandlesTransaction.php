@@ -6,13 +6,14 @@ trait HandlesTransaction
 {
     public static function handleTransaction($callback){
         $data = '';
-        $message = '';
         $info = null;
         $status = false;
 
         try {
-            $data = \DB::transaction($callback);
-            $message = 'Operation completed successfully.';
+            $result = \DB::transaction($callback);
+            $data = $result['data'];
+            $info = $result['info'];
+            $message = $result['message'];
             $status = true;
         } catch (QueryException $e) {
             $info = 'Transaction failed: ' . $e->getMessage();

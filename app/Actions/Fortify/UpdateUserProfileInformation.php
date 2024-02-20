@@ -26,11 +26,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'suffix' => ['sometimes','nullable'],
             'mobile' => ['sometimes','required'],
             'gender' => ['sometimes','required'],
+            'is_active' => ['sometimes','required'],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
         
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
+        }
+
+        if (isset($input['is_active'])) {
+            $user->forceFill([
+                'is_active' => $input['is_active'],
+            ])->save();
         }
 
         if (isset($input['username']) && isset($input['username'])) {
