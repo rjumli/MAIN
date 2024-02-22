@@ -16,7 +16,7 @@
                                 <InputError :message="form.errors.name" />
                             </BCol>
                             <!-- <BCol lg="12"><hr class="text-muted mt-n1 mb-n4"/></BCol> -->
-                            <BCol lg="6" class="mt-0 mb-n3">
+                            <BCol :lg="(!form.has_child) ? '6' : '4'"  class="mt-0 mb-n3">
                                 <InputLabel for="icon" value="Icon" />
                                 <TextInput id="icon" v-model="form.icon" type="text" class="form-control" autofocus placeholder="Please enter icon" autocomplete="icon" required :class="{ 'is-invalid': form.errors.icon }" @input="handleInput('icon')" :light="true"/>
                                 <InputError :message="form.errors.icon" />
@@ -27,10 +27,15 @@
                                 <TextInput id="route" v-model="form.route" type="text" class="form-control" autofocus placeholder="Please enter route" autocomplete="route" required :class="{ 'is-invalid': form.errors.route }" @input="handleInput('route')" :light="true"/>
                                 <InputError :message="form.errors.route" />
                             </BCol>
-                             <BCol :lg="(!form.has_child) ? '12' : '6'" class="mt-0">
+                            <BCol :lg="(!form.has_child) ? '6' : '4'" class="mt-0">
                                 <InputLabel for="path" value="File Path" />
                                 <TextInput id="path" v-model="form.path" type="text" class="form-control" autofocus placeholder="Please enter path" autocomplete="path" required :class="{ 'is-invalid': form.errors.path }" @input="handleInput('path')" :light="true"/>
                                 <InputError :message="form.errors.path" />
+                            </BCol>
+                             <BCol :lg="(!form.has_child) ? '6' : '4'" class="mt-0">
+                                <InputLabel for="path" value="Group" />
+                                <Multiselect :options="['Menu','Lists']" v-model="form.group" :message="form.errors.group" placeholder="Select Group"/>
+                                <InputError :message="form.errors.group" />
                             </BCol>
                             <BCol lg="12"><hr class="text-muted mt-n1 mb-n3"/></BCol>
                             <BCol lg="8"  style="margin-top: 13px; margin-bottom: -12px;" class="fs-12">Does your menu have a child menu?</BCol>
@@ -72,18 +77,18 @@
                                     
                                     <BRow class="g-2 mt-n2 mb-1" v-for="(menu, index) in form.submenus" :key="index">
                                         <BCol lg="4">
-                                            <TextInput id="icon" v-model="form.icon" type="text" class="form-control" autofocus placeholder="Please enter icon" autocomplete="icon" required :class="{ 'is-invalid': form.errors.icon }" @input="handleInput('icon')" :light="true"/>
-                                            <InputError :message="form.errors.icon" />
+                                            <TextInput id="icon" v-model="menu.name" type="text" class="form-control" autofocus placeholder="Please enter name" autocomplete="name" required :class="{ 'is-invalid': form.errors.name }" @input="handleInput('name')" :light="true"/>
+                                            <InputError :message="form.errors.name" />
                                         </BCol>
                                         <BCol lg="7">
                                             <BRow class="g-2">
                                                 <BCol lg="6">
-                                                    <TextInput id="icon" v-model="form.icon" type="text" class="form-control" autofocus placeholder="Please enter icon" autocomplete="icon" required :class="{ 'is-invalid': form.errors.icon }" @input="handleInput('icon')" :light="true"/>
-                                                    <InputError :message="form.errors.icon" />
+                                                    <TextInput id="icon" v-model="menu.route" type="text" class="form-control" autofocus placeholder="Please enter route" autocomplete="route" required :class="{ 'is-invalid': form.errors.route }" @input="handleInput('route')" :light="true"/>
+                                                    <InputError :message="form.errors.route" />
                                                 </BCol>
                                                 <BCol lg="6">
-                                                    <TextInput id="icon" v-model="form.icon" type="text" class="form-control" autofocus placeholder="Please enter icon" autocomplete="icon" required :class="{ 'is-invalid': form.errors.icon }" @input="handleInput('icon')" :light="true"/>
-                                                    <InputError :message="form.errors.icon" />
+                                                    <TextInput id="icon" v-model="menu.path" type="text" class="form-control" autofocus placeholder="Please enter path" autocomplete="path" required :class="{ 'is-invalid': form.errors.path }" @input="handleInput('path')" :light="true"/>
+                                                    <InputError :message="form.errors.path" />
                                                 </BCol>
                                             </BRow>
                                         </BCol>
@@ -106,11 +111,12 @@
 </template>
 <script>
 import { useForm } from '@inertiajs/vue3';
+import Multiselect from '@/Shared/Components/Subcomponents/Multiselect.vue'
 import InputError from '@/Shared/Components/Subcomponents/InputError.vue';
 import InputLabel from '@/Shared/Components/Subcomponents/InputLabel.vue';
 import TextInput from '@/Shared/Components/Subcomponents/TextInput.vue';
 export default {
-    components: { InputError, InputLabel, TextInput },
+    components: { InputError, InputLabel, TextInput, Multiselect },
     data(){
         return {
             currentUrl: window.location.origin,
@@ -119,6 +125,7 @@ export default {
                 icon: null,
                 route: null,
                 path: null,
+                group: null,
                 has_child: false,
                 is_mother: true,
                 submenus: [
@@ -159,9 +166,9 @@ export default {
             this.form.errors[field] = false;
         },
         hide(){
-            this.form.reset();
-            this.form.clearErrors();
-            this.editable = false;
+            // this.form.reset();
+            // this.form.clearErrors();
+            // this.editable = false;
             this.showModal = false;
         }
     }

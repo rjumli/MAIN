@@ -7,16 +7,18 @@
                 <li class="menu-title">
                     <span data-key="t-menu"> {{ $t("krad-menu") }}</span>
                 </li>
-                <li class="nav-item" v-for="(menu,index) in menus.menus" v-bind:key="index">
-                    <Link v-if="!menu.main.has_child" class="nav-link menu-link" :href="menu.main.route" :class="{'active': $page.component.startsWith(menu.main.path) }">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-dashboards">{{menu.main.name}}</span>
+                <li class="nav-item">
+                    <Link class="nav-link menu-link" href="/" :class="{'active': $page.component.startsWith('Modules/Home') }">
+                        <i class="ri ri-apps-line"></i>
+                        <span data-key="krad-dashboards"> {{ $t("krad-dashboards") }}</span>
                     </Link>
-                    <Link v-else class="nav-link menu-link" :href="'#'+menu.main.name" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-scholars">{{menu.main.name}}</span>
+                </li>
+                <li class="nav-item">
+                    <Link class="nav-link menu-link" href="#scholars" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="ri-team-fill"></i>
+                        <span data-key="krad-scholars">{{$t("krad-scholars")}}</span>
                     </Link>
-                    <div v-if="menu.main.has_child" class="collapse menu-dropdown" :id="menu.main.name">
+                    <div class="collapse menu-dropdown" id="scholars">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <Link class="nav-link" href="/schools">{{ $t("krad-lists") }}</Link>
@@ -30,27 +32,109 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                  <Link class="nav-link menu-link" href="/staffs">
+                      <i class="bx bx-user-circle"></i>
+                      <span data-key="krad-staffs"> {{ $t("krad-staffs") }}</span>
+                  </Link>
+                </li>
+
                 <li class="menu-title">
                     <i class="ri-more-fill"></i>
                     <span data-key="krad-lists">{{ $t("krad-lists") }}</span>
                 </li>
-                <li class="nav-item" v-for="(menu,index) in menus.lists" v-bind:key="index">
-                    <Link v-if="!menu.main.has_child" class="nav-link menu-link" :href="menu.main.route" :class="{'active': $page.component.startsWith(menu.main.path) }">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-dashboards">{{menu.main.name}}</span>
+
+                <li class="nav-item">
+                    <Link class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="ri-book-mark-fill"></i>
+                        <span data-key="krad-directory">{{$t("krad-directory")}}</span>
                     </Link>
-                    <Link v-else class="nav-link menu-link" :href="'#'+menu.main.name" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
-                        <i :class="menu.main.icon"></i>
-                        <span data-key="krad-scholars">{{menu.main.name}}</span>
-                    </Link>
-                    <div v-if="menu.main.has_child" class="collapse menu-dropdown" :id="menu.main.name">
+                    <div class="collapse menu-dropdown" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
-                            <li class="nav-item" v-for="(sub,index) in menu.submenus" v-bind:key="index">
-                                <Link class="nav-link" :class="{'active': $page.url === sub.path }" :href="sub.route">{{sub.name}}</Link>
+                            <li class="nav-item">
+                                <Link class="nav-link" href="/schools">{{ $t("krad-schools") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" href="/courses">{{ $t("krad-course") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" href="/certifications">{{ $t("krad-certifications") }}</Link>
                             </li>
                         </ul>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <Link class="nav-link menu-link" :class="{'active': $page.component.startsWith('Modules/Lists/Dropdowns') }" href="/lists/dropdowns">
+                        <i class="ri-list-check"></i>
+                        <span data-key="krad-dropdown">{{$t("krad-dropdown")}}</span>
+                    </Link>
+                </li>
+
+                <li class="nav-item">
+                    <Link class="nav-link menu-link" href="#location" :class="{'active': $page.component.startsWith('Modules/Lists/Locations') }"
+                    data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="location">
+                        <i class="ri-earth-fill"></i>
+                        <span data-key="krad-location">{{$t("krad-location")}}</span>
+                    </Link>
+                    <div class="collapse menu-dropdown" id="location">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/regions' }" href="/lists/locations/regions">{{ $t("krad-region") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/provinces' }" href="/lists/locations/provinces">{{ $t("krad-province") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/municipalities' }" href="/lists/locations/municipalities">{{ $t("krad-municipality") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.url === '/lists/locations/barangays' }" href="/lists/locations/barangays">{{ $t("krad-barangay") }}</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- <li class="menu-title">
+                    <i class="ri-more-fill"></i>
+                    <span data-key="krad-configuration">{{ $t("krad-configuration") }}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#utility" :class="{'active': $page.component.startsWith('Modules/Utility') }"
+                        data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
+                        <i class="ri-settings-4-fill"></i>
+                        <span data-key="krad-utility">{{ $t("krad-utility") }}</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="utility">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                              <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Users') }" href="/utility/users">{{ $t("krad-users") }}</Link>
+                            </li>
+                           <li class="nav-item">
+                              <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Config') }" href="/utility/config">{{ $t("krad-config") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Backups') }" href="/utility/backups">{{ $t("krad-backup") }}</Link>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#logs" :class="{'active': $page.component.startsWith('Modules/Utility/Logs') }"
+                                data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2">
+                                {{ $t("krad-logs") }}
+                                </a>
+                                <div class="collapse menu-dropdown" id="logs">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Logs/Activities') }" href="/utility/logs/activities">{{ $t("krad-activity") }}</Link>
+                                        </li>
+                                        <li class="nav-item">
+                                          <Link class="nav-link" :class="{'active': $page.component.startsWith('Modules/Utility/Logs/Authentications') }" href="/utility/logs/authentications">{{ $t("krad-authentication") }}</Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li> -->
             </ul>
         </template>
     </BContainer>
@@ -65,8 +149,6 @@ export default {
   },
   data() {
     return {
-       currentUrl: window.location.origin,
-      menus: [],
       settings: {
         minScrollbarLength: 60,
       },
@@ -83,7 +165,6 @@ export default {
   mounted() {
     this.initActiveMenu();
     this.onRoutechange();
-    this.fetch();
     if (document.querySelectorAll(".navbar-nav .collapse")) {
       let collapses = document.querySelectorAll(".navbar-nav .collapse");
 
@@ -154,13 +235,6 @@ export default {
   },
 
   methods: {
-    fetch(){
-        axios.get(this.currentUrl+'/utility/menus')
-        .then(response => {
-            this.menus = response.data;
-        })
-        .catch(err => console.log(err));
-    },
     onRoutechange() {
       // this.initActiveMenu();
       setTimeout(() => {

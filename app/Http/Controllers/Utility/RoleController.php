@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Lists;
+namespace App\Http\Controllers\Utility;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class RoleController extends Controller
 {
     //
 }

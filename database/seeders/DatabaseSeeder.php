@@ -39,5 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationBarangaysTableSeeder::class);
         $this->call(ListDropdownsTableSeeder::class);
         $this->call(ConfigurationsTableSeeder::class);
+        $this->call(ListMenusTableSeeder::class);
     }
 }

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     
-    Route::controller(VelzonRoutesController::class)->group(function () {
+    Route::controller(App\Http\Controllers\HomeController::class)->group(function () {
         Route::get('/', 'dashboard');
     });
 

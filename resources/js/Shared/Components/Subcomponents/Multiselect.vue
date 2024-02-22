@@ -4,7 +4,7 @@
     :options="options" label="name"
     :placeholder="placeholder"
     @update:modelValue="emitSelectedValues" 
-   :style="'border-color: ' + (message ? '#f06548' : '#ced4da') + ' !important;'"/>
+   :style="'border-color: ' + (message ? '#f06548' : '#ced4da') + ' !important; '"/>
 </template>
 <script>
 import Multiselect from "@vueform/multiselect";
@@ -24,3 +24,8 @@ export default {
     }
 }
 </script>
+<style>
+.multiselect-wrapper {
+  background-color: #f5f6f7;
+}
+</style>
