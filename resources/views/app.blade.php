@@ -14,7 +14,6 @@
     <meta property="og:url" content="URL to the template's webpage">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="shortcut icon" href="{{ URL::asset('image/sei.ico') }}">
-    @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 
     @inertiaHead

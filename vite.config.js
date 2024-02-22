@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
     build: {
         chunkSizeWarningLimit: 4000,
-        outDir: 'public/build',
     },
     plugins: [
         laravel({
