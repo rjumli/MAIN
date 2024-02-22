@@ -36,7 +36,7 @@ class UserProfile extends Model
         $this->attributes['middlename'] = ucwords(strtolower($value));
     }
 
-    public array $logExceptAttributes = ['password'];
+    protected static $recordEvents = ['updated'];
     public function getActivitylogOptions(): LogOptions {
         return LogOptions::defaults()
         ->logFillable()

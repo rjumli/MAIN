@@ -38,6 +38,14 @@ class UserService
 
     public function update($request){
         $user = User::findOrFail($request->id)->update($request->all());
+
+        activity()
+        ->performedOn(User::findOrFail($request->id))
+        ->causedBy(\Auth::user())
+        ->withProperties(['is_active' => $request->is_active])
+        ->event('activation')
+        ->log('activates the user');
+
         $updatedUser = User::with('profile')->findOrFail($request->id);
         return [
             'data' => new UserResource($updatedUser),

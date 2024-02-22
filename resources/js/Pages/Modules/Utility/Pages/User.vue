@@ -2,7 +2,7 @@
 <div class="">
     <form @submit.prevent="submit()" class="customforma">
         <BCard no-body>
-           <BCardHeader class="align-items-center d-flex py-0" style="height: 59px;">
+            <BCardHeader class="align-items-center d-flex py-0" style="height: 59px;">
                 <BCardTitle class="mb-0 flex-grow-1">User Management</BCardTitle>
                 <div class="flex-shrink-0">
                     <div class="input-group">
@@ -125,7 +125,7 @@ export default {
             axios.get(page_url,{
                 params : {
                     keyword: this.filter.keyword,
-                    count: ((window.innerHeight-480)/60),
+                    count: ((window.innerHeight-400)/58),
                     option: 'lists'
                 }
             })

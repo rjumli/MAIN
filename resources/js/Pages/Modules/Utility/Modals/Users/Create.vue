@@ -1,5 +1,5 @@
 <template>
-    <b-modal v-model="showModal" header-class="p-3 bg-light" title="Create User" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
+    <b-modal v-model="showModal" header-class="p-3 bg-light" :title="(!editable) ? 'Create User' : 'Edit User'" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
         <form class="customform">
             <BRow>
                 <BCol lg="12">
@@ -85,6 +85,7 @@ export default {
                 gender: null
             }),
             showModal: false,
+            editable: false
         }
     },
     methods: { 
@@ -92,8 +93,13 @@ export default {
             this.showModal = true;
         },
         edit(data){
-            console.log(data);
             this.form.email = data.email;
+            this.form.firstname = data.firstname;
+            this.form.lastname = data.lastname;
+            this.form.username = data.username;
+            this.form.mobile = data.mobile;
+            this.form.gender = data.gender;
+            this.editable = true;
             this.showModal = true;
         },
         submit(){
@@ -110,6 +116,7 @@ export default {
         hide(){
             this.form.reset();
             this.form.clearErrors();
+            this.editable = false;
             this.showModal = false;
         }
     }

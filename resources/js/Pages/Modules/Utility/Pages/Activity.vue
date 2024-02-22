@@ -32,9 +32,8 @@
                                             </div>
                                             <div class="flex-grow-1 ms-3">
                                                 <h6 class="fs-14 mb-1">{{list.log_name}}</h6>
-                                                <small class="text-muted" v-if="list.event === 'updated'">
-                                                    You {{list.description}} on {{list.created_at}}
-                                                </small>
+                                                <small class="text-muted" v-if="list.event === 'updated'"> You {{list.description}} on {{list.created_at}}</small>
+                                                <small class="text-muted" v-if="list.event === 'created'"> You created a new user on {{list.created_at}}</small>
                                             </div>
                                         </div>
                                     </BLink>
@@ -44,6 +43,9 @@
                                     <div class="accordion-body ms-2 ps-5">
                                         <div v-if="list.event === 'updated'">
                                             Updated <span class="text-warning fst-italic" v-for="(old,key,index) in list.properties.old" v-bind:key="index">{{key}} : {{old}}, </span> to <span class="text-success fst-italic" v-for="(news,key,index) in list.properties.attributes" v-bind:key="index">{{key}} : {{news}}, </span>
+                                        </div>
+                                        <div v-if="list.event === 'created'">
+                                            Created a new user, <span class="text-success fst-italic">{{list.name}}</span>
                                         </div>
                                     </div>
                                 </BCollapse>
@@ -92,11 +94,9 @@ export default {
                 }
             })
             .then(response => {
-                if(response){
-                    this.lists = response.data.data;
-                    this.meta = response.data.meta;
-                    this.links = response.data.links;          
-                }
+                this.lists = response.data.data;
+                this.meta = response.data.meta;
+                this.links = response.data.links;    
             })
             .catch(err => console.log(err));
         },

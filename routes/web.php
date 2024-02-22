@@ -37,6 +37,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             Route::resource('/config', App\Http\Controllers\Utility\ConfigController::class);
             Route::resource('/users', App\Http\Controllers\Utility\UserController::class);
             Route::resource('/backups', App\Http\Controllers\Utility\BackupController::class);
+            
+            Route::prefix('menus')->group(function(){
+                Route::controller(App\Http\Controllers\Utility\MenuController::class)->group(function () {
+                    Route::get('/','index');
+                    Route::post('/','store');
+                });
+            });
         });
     });
 });

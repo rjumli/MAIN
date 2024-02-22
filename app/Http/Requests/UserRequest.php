@@ -20,8 +20,8 @@ class UserRequest extends FormRequest
             'lastname' => 'sometimes|required|string|max:100',
             'middlename' => 'sometimes|required|string|max:50',
             'suffix' => 'sometimes|nullable|string|max:10',
-            'gender' => 'sometimes|required',
-            'mobile' => 'sometimes|required|numeric|unique:user_profiles,mobile,'.$this->profile_id
+            'gender' => 'sometimes|required|string|max:6',
+            'mobile' => 'sometimes|required|numeric|digits:11|unique:user_profiles,mobile,'.$this->profile_id
         ];
     }
 }

@@ -95,7 +95,7 @@
                     </div>
                 </li>
 
-                <li class="menu-title">
+                <!-- <li class="menu-title">
                     <i class="ri-more-fill"></i>
                     <span data-key="krad-configuration">{{ $t("krad-configuration") }}</span>
                 </li>
@@ -134,7 +134,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </template>
     </BContainer>
